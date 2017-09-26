@@ -19,6 +19,12 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("Clash Of", "clash of");
         }
 
+        [TestMethod]
+        public void input_clash_of_KINGS()
+        {
+            TitleCaseShouldBe("Clash Of Kings", "clash of KINGS");
+        }
+
         private static void TitleCaseShouldBe(string expected, string title)
         {
             var kata = new Kata();
@@ -36,7 +42,7 @@ namespace Kata20170926_TitleCase
 
         private string FirstCharToUpper(string str)
         {
-            return $"{char.ToUpper(str[0])}{str.Substring(1)}";
+            return $"{char.ToUpper(str[0])}{str.Substring(1).ToLower()}";
         }
     }
 }
