@@ -55,6 +55,12 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("The Wind in the Willows", "THE WIND IN THE WILLOWS", "The In");
         }
 
+        [TestMethod]
+        public void input_empty()
+        {
+            TitleCaseShouldBe("", "");
+        }
+
         private static void TitleCaseShouldBe(string expected, string title, string minorWords = "")
         {
             var kata = new Kata();
@@ -67,6 +73,11 @@ namespace Kata20170926_TitleCase
     {
         public string TitleCase(string title, string minorWords = "")
         {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return title;
+            }
+
             return string.Join(" ", title.Split(' ').Select((str, i) => TitleCase(str, minorWords, i == 0)));
         }
 
