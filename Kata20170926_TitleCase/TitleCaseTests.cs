@@ -84,24 +84,21 @@ namespace Kata20170926_TitleCase
                 return title;
             }
 
-            return string.Join(" ", title.Split(' ').Select((str, i) => TitleCase(str, minorWords, i == 0)));
+            var minorWordArray = minorWords?.ToLower().Split(' ') ?? new string[]{};
+
+            return string.Join(" ", title.Split(' ').Select((str, i) => TitleCase(str, minorWordArray, i == 0)));
         }
 
-        private string TitleCase(string str, string minorWords, bool isFirstWord)
+        private string TitleCase(string str, string[] minorWordArray, bool isFirstWord)
         {
-            if (isFirstWord || string.IsNullOrWhiteSpace(minorWords))
+            if (isFirstWord)
             {
                 return FirstCharToUpperString(str);
             }
 
-            return minorWords.ToLower().Split(' ').Contains(str.ToLower()) 
-                ? ToLowerString(str) 
+            return minorWordArray.Contains(str.ToLower()) 
+                ? str.ToLower() 
                 : FirstCharToUpperString(str);
-        }
-
-        private string ToLowerString(string str)
-        {
-            return str.ToLower();
         }
 
         private string FirstCharToUpperString(string str)
