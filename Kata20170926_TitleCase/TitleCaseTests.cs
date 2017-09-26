@@ -43,6 +43,18 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("A Clash of Kings", "a clash of KINGS", "a Of");
         }
 
+        [TestMethod]
+        public void input_a_clash_of_KINGS_and_a_an_the_of()
+        {
+            TitleCaseShouldBe("A Clash of Kings", "a clash of KINGS", "a an the of");
+        }
+
+        [TestMethod]
+        public void input_THE_WIND_IN_THE_WILLOWS_and_The_In()
+        {
+            TitleCaseShouldBe("The Wind in the Willows", "THE WIND IN THE WILLOWS", "The In");
+        }
+
         private static void TitleCaseShouldBe(string expected, string title, string minorWords = "")
         {
             var kata = new Kata();
