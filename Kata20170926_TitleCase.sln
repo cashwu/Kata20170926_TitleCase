@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26906.1
+VisualStudioVersion = 15.0.26923.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kata20170926_TitleCase", "Kata20170926_TitleCase\Kata20170926_TitleCase.csproj", "{CEC2DA75-5A5B-4ADC-BC27-14934DA60104}"
 EndProject
@@ -21,5 +21,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D7C6743-7150-40DB-A0CB-1D7BF6E396B2}
+	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 2d7c6743-7150-40db-a0cb-1d7bf6e396b2
 	EndGlobalSection
 EndGlobal
