@@ -61,6 +61,12 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("", "");
         }
 
+        [TestMethod]
+        public void input_aBC_deF_Ghi()
+        {
+            TitleCaseShouldBe("Abc Def Ghi", "aBC deF Ghi", null);
+        }
+
         private static void TitleCaseShouldBe(string expected, string title, string minorWords = "")
         {
             var kata = new Kata();
@@ -83,7 +89,7 @@ namespace Kata20170926_TitleCase
 
         private string TitleCase(string str, string minorWords, bool isFirstWord)
         {
-            if (isFirstWord)
+            if (isFirstWord || string.IsNullOrWhiteSpace(minorWords))
             {
                 return FirstCharToUpperString(str);
             }
