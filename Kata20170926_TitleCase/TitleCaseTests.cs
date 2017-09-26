@@ -37,6 +37,12 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("Clash of Kings", "clash of KINGS", "Of");
         }
 
+        [TestMethod]
+        public void input_a_clash_of_KINGS_and_a_of()
+        {
+            TitleCaseShouldBe("A Clash of Kings", "a clash of KINGS", "a Of");
+        }
+
         private static void TitleCaseShouldBe(string expected, string title, string minorWords = "")
         {
             var kata = new Kata();
@@ -51,12 +57,17 @@ namespace Kata20170926_TitleCase
         {
             var minorWordArray = minorWords.ToLower().Split(' ');
 
-            return string.Join(" ", title.Split(' ').Select(a => TitleCase(a, minorWordArray)));
+            return string.Join(" ", title.Split(' ').Select((a, i) => TitleCase(a, minorWordArray, i == 0)));
         }
 
-        private string TitleCase(string word, string[] minorWordArray)
+        private string TitleCase(string str, string[] minorWordArray, bool isFirstWord)
         {
-            return minorWordArray.Contains(word.ToLower()) ? ToLowerString(word) : FirstCharToUpperString(word);
+            if (isFirstWord)
+            {
+                return FirstCharToUpperString(str);
+            }
+
+            return minorWordArray.Contains(str.ToLower()) ? ToLowerString(str) : FirstCharToUpperString(str);
         }
 
         private string ToLowerString(string str)
