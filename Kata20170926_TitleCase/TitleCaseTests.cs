@@ -55,19 +55,19 @@ namespace Kata20170926_TitleCase
     {
         public string TitleCase(string title, string minorWords = "")
         {
-            var minorWordArray = minorWords.ToLower().Split(' ');
-
-            return string.Join(" ", title.Split(' ').Select((a, i) => TitleCase(a, minorWordArray, i == 0)));
+            return string.Join(" ", title.Split(' ').Select((str, i) => TitleCase(str, minorWords, i == 0)));
         }
 
-        private string TitleCase(string str, string[] minorWordArray, bool isFirstWord)
+        private string TitleCase(string str, string minorWords, bool isFirstWord)
         {
             if (isFirstWord)
             {
                 return FirstCharToUpperString(str);
             }
 
-            return minorWordArray.Contains(str.ToLower()) ? ToLowerString(str) : FirstCharToUpperString(str);
+            return minorWords.ToLower().Split(' ').Contains(str.ToLower()) 
+                ? ToLowerString(str) 
+                : FirstCharToUpperString(str);
         }
 
         private string ToLowerString(string str)
