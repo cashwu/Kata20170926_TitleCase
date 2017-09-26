@@ -25,22 +25,40 @@ namespace Kata20170926_TitleCase
             TitleCaseShouldBe("Clash Of Kings", "clash of KINGS");
         }
 
-        private static void TitleCaseShouldBe(string expected, string title)
+        [TestMethod]
+        public void input_clash_of_KINGS_and_of()
+        {
+            TitleCaseShouldBe("Clash of Kings", "clash of KINGS", "of");
+        }
+
+        private static void TitleCaseShouldBe(string expected, string title, string minorWords = "")
         {
             var kata = new Kata();
-            var actual = kata.TitleCase(title);
+            var actual = kata.TitleCase(title, minorWords);
             Assert.AreEqual(expected, actual);
         }
     }
 
     public class Kata
     {
-        public string TitleCase(string title)
+        public string TitleCase(string title, string minorWords = "")
         {
-            return string.Join(" ", title.Split(' ').Select(FirstCharToUpper));
+            var minorWordArray = minorWords.Split(' ');
+
+            return string.Join(" ", title.Split(' ').Select(a => TitleCase(a, minorWordArray)));
         }
 
-        private string FirstCharToUpper(string str)
+        private string TitleCase(string word, string[] minorWordArray)
+        {
+            return minorWordArray.Contains(word) ? ToLowerString(word) : FirstCharToUpperString(word);
+        }
+
+        private string ToLowerString(string str)
+        {
+            return str.ToLower();
+        }
+
+        private string FirstCharToUpperString(string str)
         {
             return $"{char.ToUpper(str[0])}{str.Substring(1).ToLower()}";
         }
