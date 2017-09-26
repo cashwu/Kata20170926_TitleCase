@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kata20170926_TitleCase
@@ -10,6 +11,12 @@ namespace Kata20170926_TitleCase
         public void input_clash()
         {
             TitleCaseShouldBe("Clash", "clash");
+        }
+
+        [TestMethod]
+        public void input_clash_of()
+        {
+            TitleCaseShouldBe("Clash Of", "clash of");
         }
 
         private static void TitleCaseShouldBe(string expected, string title)
@@ -24,7 +31,12 @@ namespace Kata20170926_TitleCase
     {
         public string TitleCase(string title)
         {
-            return "Clash";
+            return string.Join(" ", title.Split(' ').Select(FirstCharToUpper));
+        }
+
+        private string FirstCharToUpper(string str)
+        {
+            return $"{char.ToUpper(str[0])}{str.Substring(1)}";
         }
     }
 }
