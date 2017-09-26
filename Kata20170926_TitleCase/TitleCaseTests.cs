@@ -7,8 +7,24 @@ namespace Kata20170926_TitleCase
     public class TitleCaseTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void input_clash()
         {
+            TitleCaseShouldBe("Clash", "clash");
+        }
+
+        private static void TitleCaseShouldBe(string expected, string title)
+        {
+            var kata = new Kata();
+            var actual = kata.TitleCase(title);
+            Assert.AreEqual(expected, actual);
+        }
+    }
+
+    public class Kata
+    {
+        public string TitleCase(string title)
+        {
+            return "Clash";
         }
     }
 }
